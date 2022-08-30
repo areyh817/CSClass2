@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CSClass232
 {
-    class Program
+    internal class Program
     {
         static void NextPos(int x, int y, int vx, int vy, out int rx, out int ry)
         {
@@ -14,60 +16,6 @@ namespace CSClass232
             ry = y + vy;
         }
 
-        static void Main(string[] args)
-        {
-            Wanted<string> wantedString = new Wanted<string>("String");
-            Wanted<int> wantedInt = new Wanted<int>(52273);
-            Wanted<double> wantedDouble = new Wanted<double>(52.273);
-
-            Console.WriteLine(wantedString.Value);
-            Console.WriteLine(wantedInt.Value);
-            Console.WriteLine(wantedDouble.Value);
-
-            Products p = new Products();
-            Console.WriteLine("오늘의 점심 메뉴는 " + p[2] + "입니다.");
-            p[2] = "단무지";
-            Console.WriteLine("오늘의 점심 메뉴는 " + p[2] + "입니다.");
-
-
-            Console.WriteLine("숫자 입력: ");
-            //int output;
-            bool result = int.TryParse(Console.ReadLine(), out int output);
-            if (result)
-            {
-                Console.WriteLine("입력한 숫자" + output);
-            }
-            else
-            {
-                Console.WriteLine("숫자를 입력해주세요!");
-            }
-            int x = 0;
-            int y = 0;
-            int vx = 1;
-            int vy = 1;
-            Console.WriteLine("현재 좌표: (" + x + "," + y + ")");
-            NextPos(x, y, vx, vy, out x, out y);
-            Console.WriteLine("다음 좌표: (" + x + "," + y + ")");
-
-            Point point;
-            point.x = 10;
-            point.y = 10;
-            point = new Point(100, 200);
-            point = new Point();
-            Console.WriteLine(point.x + " / " + point.y);
-
-            PointClass pcA = new PointClass(10, 20);
-            PointClass pcB = pcA;
-            pcB.x = 100; pcB.y = 200;
-            Console.WriteLine(pcA.x + " / " + pcA.y);
-            Console.WriteLine(pcB.x + " / " + pcB.y);
-
-            PointStruct psA = new PointStruct(10, 20);
-            PointStruct psB = psA;
-            psB.x = 100; psB.y = 200;
-            Console.WriteLine(psA.x + " / " + psA.y);
-            Console.WriteLine(psB.x + " / " + psB.y);
-        }
         class PointClass
         {
             public int x;
@@ -110,6 +58,72 @@ namespace CSClass232
                 this.y = y;
                 this.testA = s;
                 this.testB = s;
+            }
+        }
+
+        static void Main(string[] args)
+        {
+            Wanted<string> wantedString = new Wanted<string>("String");
+            Wanted<int> wantedInt = new Wanted<int>(52273);
+            Wanted<double> wantedDouble = new Wanted<double>(52.273);
+
+            Console.WriteLine(wantedString.Value);
+            Console.WriteLine(wantedInt.Value);
+            Console.WriteLine(wantedDouble.Value);
+
+            Products p = new Products();
+            Console.WriteLine("오늘의 점심 메뉴는 " + p[2] + "입니다.");
+            p[2] = "단무지";
+            Console.WriteLine("오늘의 점심 메뉴는 " + p[2] + "입니다.");
+
+            Console.WriteLine("숫자 입력: ");
+            //int output;
+            bool result = int.TryParse(Console.ReadLine(), out int output);
+            if (result)
+            {
+                Console.WriteLine("입력한 숫자" + output);
+            }
+            else
+            {
+                Console.WriteLine("숫자를 입력해주세요!");
+            }
+            int x = 0;
+            int y = 0;
+            int vx = 1;
+            int vy = 1;
+            Console.WriteLine("현재 좌표: (" + x + "," + y + ")");
+            NextPos(x, y, vx, vy, out x, out y);
+            Console.WriteLine("다음 좌표: (" + x + "," + y + ")");
+
+            Point point;
+            point.x = 10;
+            point.y = 10;
+            point = new Point(100, 200);
+            point = new Point();
+            Console.WriteLine(point.x + " / " + point.y);
+
+            PointClass pcA = new PointClass(10, 20);
+            PointClass pcB = pcA;
+            pcB.x = 100; pcB.y = 200;
+            Console.WriteLine(pcA.x + " / " + pcA.y);
+            Console.WriteLine(pcB.x + " / " + pcB.y);
+
+            PointStruct psA = new PointStruct(10, 20);
+            PointStruct psB = psA;
+            psB.x = 100; psB.y = 200;
+            Console.WriteLine(psA.x + " / " + psA.y);
+            Console.WriteLine(psB.x + " / " + psB.y);
+
+            List<Product> list = new List<Product>() {
+                new Product(){ Name="고구마", Price=1500 },
+                new Product(){ Name="사과", Price=2400 },
+                new Product(){ Name="바나나", Price=1000 },
+                new Product(){ Name="배", Price=3000 },
+            };
+            list.Sort();
+            foreach(var item in list)
+            {
+                Console.WriteLine(item);
             }
         }
 
