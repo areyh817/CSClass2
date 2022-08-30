@@ -113,17 +113,51 @@ namespace CSClass232
             psB.x = 100; psB.y = 200;
             Console.WriteLine(psA.x + " / " + psA.y);
             Console.WriteLine(psB.x + " / " + psB.y);
-
-            List<Product> list = new List<Product>() {
-                new Product(){ Name="고구마", Price=1500 },
-                new Product(){ Name="사과", Price=2400 },
-                new Product(){ Name="바나나", Price=1000 },
-                new Product(){ Name="배", Price=3000 },
-            };
-            list.Sort();
-            foreach(var item in list)
+            using (Dummy dummy = new Dummy())
             {
-                Console.WriteLine(item);
+                List<Product> list = new List<Product>() {
+                    new Product(){ Name="고구마", Price=1500 },
+                    new Product(){ Name="사과", Price=2400 },
+                    new Product(){ Name="바나나", Price=1000 },
+                    new Product(){ Name="배", Price=3000 },
+                };
+                list.Sort();
+                foreach (var item in list)
+                {
+                    Console.WriteLine(item);
+                }
+            }
+
+            IBasic test = new TestClass();
+            test.TestProperty = 3;
+            test.TestInstanceMethod();
+            //test.foobar();
+            (test as TestClass).foobar();
+
+        }
+
+        class Dummy : IDisposable
+        {
+            public void Dispose()
+            {
+                Console.WriteLine("Dispose() 메서드를 호출했습니다.");
+            }
+        }
+
+        class TestClass : IBasic
+        {
+            public int foobar()
+            {
+                return -1;
+            }
+            public int TestProperty { 
+                get => throw new NotImplementedException(); 
+                set => throw new NotImplementedException(); 
+            }
+
+            public int TestInstanceMethod()
+            {
+                throw new NotImplementedException();
             }
         }
 
